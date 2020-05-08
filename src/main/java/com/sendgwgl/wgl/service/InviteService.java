@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -15,6 +16,10 @@ public class InviteService {
 
     public Invite getOneById(Long id) {
         return inviteRepository.findById(id).get();
+    }
+
+    public List<Invite> getOneByEmail(String email, Boolean completion){
+        return inviteRepository.findByEmailAndCompletion(email, completion);
     }
 
     public void saveInvite(Invite invite) {

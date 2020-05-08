@@ -37,6 +37,10 @@ public class Invite {
         this.id = id;
     }
 
+    public Invite(String email){
+        this.email = email;
+    }
+
     public Invite(Long id, Account accountid, String email, Transaction transactionid, Company companyid, boolean completion, Date createdat, Date updatedat) {
         this.id = id;
         this.accountid = accountid;

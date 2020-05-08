@@ -11,8 +11,10 @@ import com.sendgwgl.wgl.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.DocFlavor;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class AppController {
@@ -64,6 +66,11 @@ public class AppController {
     @PostMapping("/invite")
     public void savOneInvite (@RequestBody Invite invite){
         inviteService.saveInvite(invite);
+    }
+
+    @PostMapping("/demo")
+    public List<Invite> getUncompletedInvitations(@RequestBody Invite invite){
+        return inviteService.getOneByEmail(invite.getEmail(), invite.isCompletion());
     }
 
 //    @Autowired
