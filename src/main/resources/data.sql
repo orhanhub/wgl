@@ -1,0 +1,1 @@
+INSERT INTO product (id, name, price) VALUES (1, 'beer', 2.00);
