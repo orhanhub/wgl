@@ -1,6 +1,5 @@
 package com.sendgwgl.wgl.service;
 
-import com.sendgwgl.wgl.model.Company;
 import com.sendgwgl.wgl.model.Transaction;
 import com.sendgwgl.wgl.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ public class TransactionService {
     private TransactionRepository transactionRepository;
 
     public Transaction getOneById(Long id) {
-        return transactionRepository.findById(id).get();
+        return transactionRepository.findById(id).orElse(new Transaction(0L));
     }
 
     public void saveTransaction(Transaction transaction) {

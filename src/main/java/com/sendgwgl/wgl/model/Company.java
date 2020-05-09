@@ -52,6 +52,7 @@ public class Company {
     public void setParentid(Long parentid) {
         this.parentid = parentid;
     }
+
 }
 
 

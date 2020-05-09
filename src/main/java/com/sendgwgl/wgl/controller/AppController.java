@@ -9,13 +9,15 @@ import com.sendgwgl.wgl.service.CompanyService;
 import com.sendgwgl.wgl.service.InviteService;
 import com.sendgwgl.wgl.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.DocFlavor;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
 import java.util.List;
 
+
+//FIXME: for react axios get
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class AppController {
     @Autowired

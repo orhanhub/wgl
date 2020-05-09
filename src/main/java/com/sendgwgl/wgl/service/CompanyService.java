@@ -14,7 +14,7 @@ public class CompanyService {
     private CompanyRepository companyRepository;
 
     public Company getOneById(Long id) {
-        return companyRepository.findById(id).get();
+        return companyRepository.findById(id).orElse(new Company(0L));
     }
 
     public void saveCompany(Company company) {
