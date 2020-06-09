@@ -13,13 +13,26 @@ public class CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
 
+    //find the company name if you know the id;
     public Company getOneById(Long id) {
         return companyRepository.findById(id).orElse(new Company(0L));
     }
 
-    public void saveCompany(Company company) {
+    //find the company id if you know the name; -1L if not found
+    public Long getOneByName(String name) {
+        try {
 
+            Company companyobj = companyRepository.findByName(name);
+            return companyobj.getId();
+        } catch (NullPointerException e) {
+            return -1L;
+        }
+    }
+
+    //Save the company and return company id;
+    public Long saveCompany(Company company) {
         companyRepository.save(company);
+        return company.getId();
     }
 
 }

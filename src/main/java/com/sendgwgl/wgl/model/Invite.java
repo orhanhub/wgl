@@ -1,5 +1,8 @@
 package com.sendgwgl.wgl.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
@@ -7,26 +10,37 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonRootName(value = "invitation")
 public class Invite {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     //invitedby
     @ManyToOne
     @JoinColumn(name = "INVITEDBY")
     private Account accountid;
+
+    @JsonProperty(value = "email")
     private String email;
+
     //transactionid
     @ManyToOne
     @JoinColumn(name = "TRANSACTIONID")
     private Transaction transactionid;
+
     //companyid
     @ManyToOne
     @JoinColumn(name = "COMPANYID")
     private Company companyid;
+
     private boolean completion;
+
     @Generated(GenerationTime.INSERT)
     private Date createdat;
+
     @Generated(GenerationTime.INSERT)
     private Date updatedat;
 
@@ -40,6 +54,12 @@ public class Invite {
     public Invite(String email){
         this.email = email;
     }
+
+    public Invite( Transaction transactionid,  String email, boolean completion) {
+        this.transactionid = transactionid;
+        this.email = email;
+        this.completion = completion;
+        }
 
     public Invite(Long id, Account accountid, String email, Transaction transactionid, Company companyid, boolean completion, Date createdat, Date updatedat) {
         this.id = id;

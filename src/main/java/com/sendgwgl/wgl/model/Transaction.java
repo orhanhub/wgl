@@ -1,5 +1,8 @@
 package com.sendgwgl.wgl.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
@@ -7,12 +10,19 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonRootName(value = "transaction")
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonProperty(value = "codename")
     private String codename;
+
+    @JsonProperty(value = "issuername")
     private String issuername;
+
     @ManyToOne
     @JoinColumn(name="CREATORID")
     private Account account;
@@ -23,6 +33,12 @@ public class Transaction {
 
     public Transaction(Long id) {
         this.id = id;
+    }
+
+    public Transaction(String codename, String issuername) {
+        this.codename = codename;
+        this.issuername = issuername;
+//        this.account = account;
     }
 
     public Transaction(Long id, String codename, String issuername, Account account, Date createdat) {
