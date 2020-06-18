@@ -54,7 +54,7 @@ public class AppController {
     public Long saveOneCompany(@RequestBody Company company) {
         return companyService.saveCompany(company);
     }
-
+con
     @GetMapping("/account/{id}")
     public Account getOneAcount(@PathVariable Long id, HttpServletResponse response) {
         return accountService.getOneById(id);
@@ -118,15 +118,16 @@ public class AppController {
         ObjectMapper objectMapper = new ObjectMapper();
         String transactionNode = objectNode.get("transaction").toString();
         String invitationNode = objectNode.get("invitation").toString();
-        try {
-            Transaction transaction = objectMapper.readValue(transactionNode, Transaction.class);
-            Invite invite = objectMapper.readValue(invitationNode, Invite.class);
-            transactionService.saveTransaction(transaction);
-            Invite inviteWithTransactionId = new Invite (transaction, invite.getEmail(), false);
-            inviteService.saveInvite(inviteWithTransactionId);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        
+//        try {
+//            Transaction transaction = objectMapper.readValue(transactionNode, Transaction.class);
+//            Invite invite = objectMapper.readValue(invitationNode, Invite.class);
+//            transactionService.saveTransaction(transaction);
+//            Invite inviteWithTransactionId = new Invite (transaction, invite.getEmail(), false);
+//            inviteService.saveInvite(inviteWithTransactionId);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
     }
 
 //    @Autowired

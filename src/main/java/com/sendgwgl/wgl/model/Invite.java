@@ -10,7 +10,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+//When a JSON is unmarshalled, i.e. converted to class, ignore unmatched JSON keys
 @JsonIgnoreProperties(ignoreUnknown = true)
+//In a nested JSON, the key will be invitation and the value will be the class below
 @JsonRootName(value = "invitation")
 public class Invite {
 
