@@ -1,5 +1,6 @@
 package com.sendgwgl.wgl.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
@@ -11,15 +12,23 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String email;
+
     private String password;
+
     private String firstname;
+
     private String lastname;
+
     private String mobilenumber;
+
     @ManyToOne
     @JoinColumn(name="COMPANYID")
     private Company companyid;
+
     private Boolean activestatus;
+
     @Generated(GenerationTime.INSERT)
     private Date createdat;
 

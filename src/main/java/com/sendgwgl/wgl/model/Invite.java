@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 //When a JSON is unmarshalled, i.e. converted to class, ignore unmatched JSON keys
@@ -20,23 +21,13 @@ public class Invite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //invitedby
-    @ManyToOne
-    @JoinColumn(name = "INVITEDBY")
-    private Account accountid;
-
-    @JsonProperty(value = "email")
-    private String email;
-
     //transactionid
     @ManyToOne
     @JoinColumn(name = "TRANSACTIONID")
     private Transaction transactionid;
 
-    //companyid
-    @ManyToOne
-    @JoinColumn(name = "COMPANYID")
-    private Company companyid;
+    //@JsonProperty(value = "email")
+    private String email;
 
     private boolean completion;
 
@@ -63,12 +54,10 @@ public class Invite {
         this.completion = completion;
         }
 
-    public Invite(Long id, Account accountid, String email, Transaction transactionid, Company companyid, boolean completion, Date createdat, Date updatedat) {
+    public Invite(Long id, Transaction transactionid, String email, boolean completion, Date createdat, Date updatedat) {
         this.id = id;
-        this.accountid = accountid;
-        this.email = email;
         this.transactionid = transactionid;
-        this.companyid = companyid;
+        this.email = email;
         this.completion = completion;
         this.createdat = createdat;
         this.updatedat = updatedat;
@@ -80,14 +69,6 @@ public class Invite {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Account getAccountid() {
-        return accountid;
-    }
-
-    public void setAccountid(Account accountid) {
-        this.accountid = accountid;
     }
 
     public String getEmail() {
@@ -104,14 +85,6 @@ public class Invite {
 
     public void setTransactionid(Transaction transactionid) {
         this.transactionid = transactionid;
-    }
-
-    public Company getCompanyid() {
-        return companyid;
-    }
-
-    public void setCompanyid(Company companyid) {
-        this.companyid = companyid;
     }
 
     public boolean isCompletion() {
@@ -137,4 +110,5 @@ public class Invite {
     public void setUpdatedat(Date updatedat) {
         this.updatedat = updatedat;
     }
+
 }

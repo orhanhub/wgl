@@ -1,10 +1,7 @@
 package com.sendgwgl.wgl.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.sendgwgl.wgl.model.Account;
 import com.sendgwgl.wgl.model.Company;
@@ -15,18 +12,14 @@ import com.sendgwgl.wgl.service.CompanyService;
 import com.sendgwgl.wgl.service.InviteService;
 import com.sendgwgl.wgl.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.NotNull;
-import java.io.DataInput;
-import java.io.IOException;
 import java.util.List;
 
 
 //FIXME: for react axios get
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class AppController {
     @Autowired
@@ -54,7 +47,7 @@ public class AppController {
     public Long saveOneCompany(@RequestBody Company company) {
         return companyService.saveCompany(company);
     }
-con
+
     @GetMapping("/account/{id}")
     public Account getOneAcount(@PathVariable Long id, HttpServletResponse response) {
         return accountService.getOneById(id);
@@ -113,21 +106,21 @@ con
 //        }
 //    }
 
-    @PostMapping ("/wglrequest")
-    public void requestwgl (@RequestBody ObjectNode objectNode) {
+    @PostMapping("/wglrequest")
+    public void requestwgl(@RequestBody ObjectNode objectNode) {
         ObjectMapper objectMapper = new ObjectMapper();
         String transactionNode = objectNode.get("transaction").toString();
         String invitationNode = objectNode.get("invitation").toString();
-        
-//        try {
-//            Transaction transaction = objectMapper.readValue(transactionNode, Transaction.class);
-//            Invite invite = objectMapper.readValue(invitationNode, Invite.class);
-//            transactionService.saveTransaction(transaction);
-//            Invite inviteWithTransactionId = new Invite (transaction, invite.getEmail(), false);
-//            inviteService.saveInvite(inviteWithTransactionId);
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
+
+        try {
+            Transaction transaction = objectMapper.readValue(transactionNode, Transaction.class);
+            Invite invite = objectMapper.readValue(invitationNode, Invite.class);
+            transactionService.saveTransaction(transaction);
+            Invite inviteWithTransactionId = new Invite(transaction, invite.getEmail(), false);
+            inviteService.saveInvite(inviteWithTransactionId);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
 //    @Autowired

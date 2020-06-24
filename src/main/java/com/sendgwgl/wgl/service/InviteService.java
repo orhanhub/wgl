@@ -15,6 +15,7 @@ public class InviteService {
     private InviteRepository inviteRepository;
 
     public Invite getOneById(Long id) {
+
         return inviteRepository.findById(id).orElse(new Invite(0L));
     }
 

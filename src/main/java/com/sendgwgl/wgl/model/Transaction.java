@@ -26,6 +26,7 @@ public class Transaction {
     @ManyToOne
     @JoinColumn(name="CREATORID")
     private Account account;
+
     @Generated(GenerationTime.INSERT)
     private Date createdat;
 

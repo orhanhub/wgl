@@ -1,8 +1,6 @@
 package com.sendgwgl.wgl.model;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 
 //TODO: unique company name case and error if duplicate;
@@ -13,7 +11,9 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     @Column(nullable= true)
     private Long parentid;
 
