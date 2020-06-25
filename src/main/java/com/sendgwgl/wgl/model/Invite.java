@@ -1,7 +1,6 @@
 package com.sendgwgl.wgl.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
@@ -44,15 +43,15 @@ public class Invite {
         this.id = id;
     }
 
-    public Invite(String email){
+    public Invite(String email) {
         this.email = email;
     }
 
-    public Invite( Transaction transactionid,  String email, boolean completion) {
+    public Invite(Transaction transactionid, String email, boolean completion) {
         this.transactionid = transactionid;
         this.email = email;
         this.completion = completion;
-        }
+    }
 
     public Invite(Long id, Transaction transactionid, String email, boolean completion, Date createdat, Date updatedat) {
         this.id = id;
@@ -111,4 +110,15 @@ public class Invite {
         this.updatedat = updatedat;
     }
 
+    @Override
+    public String toString() {
+        return "Invite{" +
+                "id=" + id +
+                ", transactionid=" + transactionid +
+                ", email='" + email + '\'' +
+                ", completion=" + completion +
+                ", createdat=" + createdat +
+                ", updatedat=" + updatedat +
+                '}';
+    }
 }

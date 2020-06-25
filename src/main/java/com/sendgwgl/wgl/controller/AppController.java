@@ -7,6 +7,7 @@ import com.sendgwgl.wgl.model.Account;
 import com.sendgwgl.wgl.model.Company;
 import com.sendgwgl.wgl.model.Invite;
 import com.sendgwgl.wgl.model.Transaction;
+import com.sendgwgl.wgl.serialized.CustomInvite;
 import com.sendgwgl.wgl.service.AccountService;
 import com.sendgwgl.wgl.service.CompanyService;
 import com.sendgwgl.wgl.service.InviteService;
@@ -69,8 +70,9 @@ public class AppController {
     }
 
     @GetMapping("/invite/{id}")
-    public Invite getOneInvite(@PathVariable Long id, HttpServletResponse response) {
+    public CustomInvite getOneInvite(@PathVariable Long id, HttpServletResponse response) throws JsonProcessingException {
         return inviteService.getOneById(id);
+
     }
 
     @PostMapping("/invite")
