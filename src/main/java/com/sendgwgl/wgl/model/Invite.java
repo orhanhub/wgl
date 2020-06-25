@@ -1,8 +1,11 @@
 package com.sendgwgl.wgl.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.sendgwgl.wgl.serializer.InviteSerializer;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
@@ -31,6 +34,7 @@ public class Invite {
 
     private boolean completion;
 
+    @JsonSerialize(using = InviteSerializer.class)
     @Generated(GenerationTime.INSERT)
     private Date createdat;
 
