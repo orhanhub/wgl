@@ -9,6 +9,15 @@ public class CustomInvite {
     private String lastname;
     private String company;
 
+    //no args constructor
+    public CustomInvite () {};
+
+    //If custom invite is not found, return a blank custom invite with error id
+    //for that reason, the service will use the id constructor
+    public CustomInvite(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }

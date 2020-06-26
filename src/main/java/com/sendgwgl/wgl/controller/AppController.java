@@ -70,9 +70,8 @@ public class AppController {
     }
 
     @GetMapping("/invite/{id}")
-    public CustomInvite getOneInvite(@PathVariable Long id, HttpServletResponse response) throws JsonProcessingException {
+    public CustomInvite getOneInvite(@PathVariable Long id, HttpServletResponse response) {
         return inviteService.getOneById(id);
-
     }
 
     @PostMapping("/invite")

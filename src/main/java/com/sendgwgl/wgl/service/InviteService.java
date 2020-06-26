@@ -1,6 +1,5 @@
 package com.sendgwgl.wgl.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sendgwgl.wgl.model.Invite;
@@ -10,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -18,31 +19,41 @@ public class InviteService {
     @Autowired
     private InviteRepository inviteRepository;
 
-    //TODO: Null pointer exception handling, if there's no result
-    //TODO: createdAt serialization as Date instead of integer
     //TODO: onebyId is complete as single object, how about array of objects for getOneByEmail?
 
-    public CustomInvite getOneById(Long id) throws JsonProcessingException {
-        //query result (or an empty result);
-        Invite invite = inviteRepository.findById(id).orElse(new Invite(0L));
+    public CustomInvite getOneById(Long id) {
 
-        //convert query result to jsonNode
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode node = mapper.valueToTree(invite);
-        System.out.println(node.toPrettyString());
+        //query result
+        //note that findById is optional class
+        Optional<Invite> invite = inviteRepository.findById(id);
 
-        //edit the query to peel off confidential/unnecessary parts
-        // by fitting into customInvite class
-        CustomInvite customInvite = new CustomInvite();
-        customInvite.setId(node.get("id").asText());
-        customInvite.setCodename(node.get("transactionid").get("codename").asText());
-        customInvite.setIssuername(node.get("transactionid").get("issuername").asText());
-        customInvite.setCreatedat(node.get("createdat").asText());
-        customInvite.setFirstname(node.get("transactionid").get("account").get("firstname").asText());
-        customInvite.setLastname(node.get("transactionid").get("account").get("lastname").asText());
-        customInvite.setCompany(node.get("transactionid").get("account").get("companyid").get("name").asText());
+        //if value found:
+        if (invite.isPresent()) {
 
-        return customInvite;
+            //convert query result to jsonNode
+            ObjectMapper mapper = new ObjectMapper();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-dd-yyyy HH:mm");
+            mapper.setDateFormat(dateFormat);
+            JsonNode node = mapper.valueToTree(invite.get());
+
+            //redact the query result for confidential/unnecessary parts
+            // by fitting into customInvite class
+            CustomInvite customInvite = new CustomInvite();
+
+            customInvite.setId(node.get("id").asText());
+            customInvite.setCodename(node.get("transactionid").get("codename").asText());
+            customInvite.setIssuername(node.get("transactionid").get("issuername").asText());
+            customInvite.setCreatedat(node.get("createdat").asText());
+            customInvite.setFirstname(node.get("transactionid").get("account").get("firstname").asText());
+            customInvite.setLastname(node.get("transactionid").get("account").get("lastname").asText());
+            customInvite.setCompany(node.get("transactionid").get("account").get("companyid").get("name").asText());
+
+            return customInvite;
+        }
+        //if value not found, return a blank custominvite object with id 0;
+        else {
+            return new CustomInvite("0");
+        }
     }
 
     public List<Invite> getOneByEmail(String email, Boolean completion) {
