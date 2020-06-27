@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
 
 @Service
 @Transactional
@@ -20,8 +19,9 @@ public class TransactionService {
         return transactionRepository.findByCodename(codename);
     }
 
-    public Transaction getOneById(Long id) {
-        return transactionRepository.findById(id).orElse(new Transaction(0L));
+    public TransactionProjection getOneById(Long id) {
+//        return transactionRepository.findById(id).orElse(new Transaction(0L));
+        return transactionRepository.getById(id);
     }
 
     public void saveTransaction(Transaction transaction) {

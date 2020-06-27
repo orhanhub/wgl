@@ -20,10 +20,10 @@ public class Invite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //transactionid
+    //transaction
     @ManyToOne
     @JoinColumn(name = "TRANSACTIONID")
-    private Transaction transactionid;
+    private Transaction transaction;
 
     //@JsonProperty(value = "email")
     private String email;
@@ -47,15 +47,15 @@ public class Invite {
         this.email = email;
     }
 
-    public Invite(Transaction transactionid, String email, boolean completion) {
-        this.transactionid = transactionid;
+    public Invite(Transaction transaction, String email, boolean completion) {
+        this.transaction = transaction;
         this.email = email;
         this.completion = completion;
     }
 
-    public Invite(Long id, Transaction transactionid, String email, boolean completion, Date createdat, Date updatedat) {
+    public Invite(Long id, Transaction transaction, String email, boolean completion, Date createdat, Date updatedat) {
         this.id = id;
-        this.transactionid = transactionid;
+        this.transaction = transaction;
         this.email = email;
         this.completion = completion;
         this.createdat = createdat;
@@ -78,12 +78,12 @@ public class Invite {
         this.email = email;
     }
 
-    public Transaction getTransactionid() {
-        return transactionid;
+    public Transaction getTransaction() {
+        return transaction;
     }
 
-    public void setTransactionid(Transaction transactionid) {
-        this.transactionid = transactionid;
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
     }
 
     public boolean isCompletion() {
@@ -114,7 +114,7 @@ public class Invite {
     public String toString() {
         return "Invite{" +
                 "id=" + id +
-                ", transactionid=" + transactionid +
+                ", transaction=" + transaction +
                 ", email='" + email + '\'' +
                 ", completion=" + completion +
                 ", createdat=" + createdat +

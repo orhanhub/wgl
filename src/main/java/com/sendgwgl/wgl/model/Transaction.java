@@ -39,7 +39,6 @@ public class Transaction {
     public Transaction(String codename, String issuername) {
         this.codename = codename;
         this.issuername = issuername;
-//        this.account = account;
     }
 
     public Transaction(Long id, String codename, String issuername, Account account, Date createdat) {
