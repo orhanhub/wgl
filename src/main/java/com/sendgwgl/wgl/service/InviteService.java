@@ -1,5 +1,6 @@
 package com.sendgwgl.wgl.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sendgwgl.wgl.model.Invite;
@@ -58,6 +59,7 @@ public class InviteService {
 
     public List<Invite> getOneByEmail(String email, Boolean completion) {
         return inviteRepository.findByEmailAndCompletion(email, completion);
+
     }
 
     public void saveInvite(Invite invite) {

@@ -7,6 +7,7 @@ import com.sendgwgl.wgl.model.Account;
 import com.sendgwgl.wgl.model.Company;
 import com.sendgwgl.wgl.model.Invite;
 import com.sendgwgl.wgl.model.Transaction;
+import com.sendgwgl.wgl.model.projections.TransactionProjection;
 import com.sendgwgl.wgl.serialized.CustomInvite;
 import com.sendgwgl.wgl.service.AccountService;
 import com.sendgwgl.wgl.service.CompanyService;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -64,10 +66,16 @@ public class AppController {
         return transactionService.getOneById(id);
     }
 
+    @GetMapping("/ttest/{code}")
+    public TransactionProjection getCodeTest(@PathVariable String code, HttpServletResponse response) {
+        return transactionService.getOneByCodename(code);
+    }
+
     @PostMapping("/transaction")
     public void saveOneTransaction(@RequestBody Transaction transaction) {
         transactionService.saveTransaction(transaction);
     }
+
 
     @GetMapping("/invite/{id}")
     public CustomInvite getOneInvite(@PathVariable Long id, HttpServletResponse response) {
