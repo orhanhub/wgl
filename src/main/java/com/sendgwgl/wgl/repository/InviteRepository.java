@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface InviteRepository extends JpaRepository<Invite, Long> {
-    List<Invite> findByEmailAndCompletion(String email, Boolean completion);
+    List<InviteProjection> findByEmailAndCompletion(String email, Boolean completion);
 
     InviteProjection getById(Long id);
 }

@@ -30,7 +30,7 @@ public class InviteController {
 
     //This should show the transactions that I was invited to and not yet completed
     @PostMapping("/invitations")
-    public List<Invite> getUncompletedInvitations(@RequestBody Invite invite) {
-        return inviteService.getOneByEmail(invite.getEmail(), invite.isCompletion());
+    public List<InviteProjection> getUncompletedInvitations(@RequestBody Invite invite) {
+        return inviteService.getAllByEmail(invite.getEmail(), invite.isCompletion());
     }
 }

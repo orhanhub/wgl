@@ -27,4 +27,5 @@ List<Document> findDocumentsForListing(String filterValue);
 
 2) use interface (chosen method here)
 
-
+addition to ff085b9 branch:
+The solution implemented to getOne Invitation is extended to getAll invitations, now returning an array of invitation objects
