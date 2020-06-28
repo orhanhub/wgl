@@ -44,16 +44,6 @@ public class AppController {
 //        }
 //    }
 
-    @PostMapping("/nested")
-    public void nested(@RequestBody RequestWgl json) {
-        Transaction jsonTransaction = json.getTransaction();
-        Invite invite = json.getInvite();
-
-        transactionService.saveTransaction(jsonTransaction);
-        invite.setTransaction(jsonTransaction);
-        inviteService.saveInvite(invite);
-    }
-
     @PostMapping("/wglrequest")
     public void requestwgl(@RequestBody ObjectNode objectNode) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -71,3 +61,4 @@ public class AppController {
         }
     }
 }
+

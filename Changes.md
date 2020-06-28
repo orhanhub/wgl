@@ -32,3 +32,6 @@ The solution implemented to getOne Invitation is extended to getAll invitations,
 
 addition to 11ad343 branch:
 wgl request route completed, but for only single invite, next list of invites
+
+addition to 0305336 branch:
+wgl request route completed for list of invites

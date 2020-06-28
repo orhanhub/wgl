@@ -4,11 +4,11 @@ import java.util.List;
 
 public class RequestWgl {
     private Transaction transaction;
-    private Invite invite;
+    private List<Invite> invite;
 
     protected RequestWgl () {};
 
-    public RequestWgl(Transaction transaction, Invite invite) {
+    public RequestWgl(Transaction transaction, List<Invite> invite) {
         this.transaction = transaction;
         this.invite = invite;
     }
@@ -21,11 +21,11 @@ public class RequestWgl {
         this.transaction = transaction;
     }
 
-    public Invite getInvite() {
+    public List<Invite> getInvite() {
         return invite;
     }
 
-    public void setInvite(Invite invite) {
+    public void setInvite(List<Invite> invite) {
         this.invite = invite;
     }
 }
