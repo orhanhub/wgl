@@ -7,7 +7,6 @@ import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 //When a JSON is unmarshalled, i.e. converted to class, ignore unmatched JSON keys

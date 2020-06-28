@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -33,6 +34,10 @@ public class CompanyService {
     public Long saveCompany(Company company) {
         companyRepository.save(company);
         return company.getId();
+    }
+
+    public void saveAll(List<Company> company) {
+        companyRepository.saveAll(company);
     }
 
 }

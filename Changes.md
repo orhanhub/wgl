@@ -29,3 +29,6 @@ List<Document> findDocumentsForListing(String filterValue);
 
 addition to ff085b9 branch:
 The solution implemented to getOne Invitation is extended to getAll invitations, now returning an array of invitation objects
+
+addition to 11ad343 branch:
+wgl request route completed, but for only single invite, next list of invites

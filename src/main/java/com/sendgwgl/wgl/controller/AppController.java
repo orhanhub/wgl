@@ -4,15 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.sendgwgl.wgl.model.Invite;
+import com.sendgwgl.wgl.model.RequestWgl;
 import com.sendgwgl.wgl.model.Transaction;
 import com.sendgwgl.wgl.service.InviteService;
 import com.sendgwgl.wgl.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-
 
 //FIXME: for react axios get
 @CrossOrigin(origins = "http://localhost:3000")
@@ -45,6 +44,16 @@ public class AppController {
 //        }
 //    }
 
+    @PostMapping("/nested")
+    public void nested(@RequestBody RequestWgl json) {
+        Transaction jsonTransaction = json.getTransaction();
+        Invite invite = json.getInvite();
+
+        transactionService.saveTransaction(jsonTransaction);
+        invite.setTransaction(jsonTransaction);
+        inviteService.saveInvite(invite);
+    }
+
     @PostMapping("/wglrequest")
     public void requestwgl(@RequestBody ObjectNode objectNode) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -61,5 +70,4 @@ public class AppController {
             e.printStackTrace();
         }
     }
-
 }
