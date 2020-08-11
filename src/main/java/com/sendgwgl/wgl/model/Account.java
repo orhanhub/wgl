@@ -1,6 +1,5 @@
 package com.sendgwgl.wgl.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 

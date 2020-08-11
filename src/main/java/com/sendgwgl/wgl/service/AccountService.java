@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-//TODO what is transactional, why use it here?
 @Service
 @Transactional
 public class AccountService {
@@ -16,7 +15,7 @@ public class AccountService {
     private AccountRepository accountRepository;
 
     public Account getOneById(Long id) {
-            return accountRepository.findById(id).orElse(new Account(0L));
+        return accountRepository.findById(id).orElse(new Account(0L));
     }
 
     public void saveAccount(Account account) {

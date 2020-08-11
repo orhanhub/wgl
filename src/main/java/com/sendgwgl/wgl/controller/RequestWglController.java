@@ -23,29 +23,16 @@ public class RequestWglController {
     @Autowired
     private InviteService inviteService;
 
-//    @PostMapping("/nested")
-//    public void nested(@RequestBody RequestWgl json) {
-//
-//        Transaction jsonTransaction = json.getTransaction();
-//        Invite invite = json.getInvite();
-//
-//        transactionService.saveTransaction(jsonTransaction);
-//        invite.setTransaction(jsonTransaction);
-//        inviteService.saveInvite(invite);
-//    }
-
-    @PostMapping("/nested")
+    @PostMapping("/wglrequest")
     public void nested(@RequestBody RequestWgl json) {
 
         Transaction jsonTransaction = json.getTransaction();
         List<Invite> jsonInvite = json.getInvite();
 
         transactionService.saveTransaction(jsonTransaction);
-        for(Invite invite : jsonInvite) {
+        for (Invite invite : jsonInvite) {
             invite.setTransaction(jsonTransaction);
             inviteService.saveInvite(invite);
         }
     }
-
-
 }

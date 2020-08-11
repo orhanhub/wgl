@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
+import java.util.Collection;
 
 @Service
 @Transactional
@@ -22,7 +22,6 @@ public class CompanyService {
     //find the company id if you know the name; -1L if not found
     public Long getOneByName(String name) {
         try {
-
             Company companyobj = companyRepository.findByName(name);
             return companyobj.getId();
         } catch (NullPointerException e) {
@@ -36,8 +35,11 @@ public class CompanyService {
         return company.getId();
     }
 
-    public void saveAll(List<Company> company) {
+    public void saveAll(Collection<Company> company) {
         companyRepository.saveAll(company);
     }
 
+    public Collection<Company> getAll() {
+        return companyRepository.findAll();
+    }
 }

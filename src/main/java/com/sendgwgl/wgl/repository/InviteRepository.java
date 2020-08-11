@@ -3,12 +3,14 @@ package com.sendgwgl.wgl.repository;
 import com.sendgwgl.wgl.model.Invite;
 import com.sendgwgl.wgl.model.projections.InviteProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface InviteRepository extends JpaRepository<Invite, Long> {
-    List<InviteProjection> findByEmailAndCompletion(String email, Boolean completion);
+
+    Collection<InviteProjection> findByEmailAndCompletion(String email, Boolean completion);
 
     InviteProjection getById(Long id);
+
+    Collection<InviteProjection> getByTransactionId(Long id);
 }
