@@ -10,7 +10,9 @@ public interface InviteRepository extends JpaRepository<Invite, Long> {
 
     Collection<InviteProjection> findByEmailAndCompletion(String email, Boolean completion);
 
-    InviteProjection getById(Long id);
-
     Collection<InviteProjection> getByTransactionId(Long id);
+
 }
+/*
+    InviteProjection getById(Long id);
+ */

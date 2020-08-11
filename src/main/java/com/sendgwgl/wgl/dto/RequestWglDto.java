@@ -1,14 +1,17 @@
-package com.sendgwgl.wgl.model;
+package com.sendgwgl.wgl.dto;
+
+import com.sendgwgl.wgl.model.Invite;
+import com.sendgwgl.wgl.model.Transaction;
 
 import java.util.List;
 
-public class RequestWgl {
+public class RequestWglDto {
     private Transaction transaction;
     private List<Invite> invite;
 
-    protected RequestWgl () {};
+    protected RequestWglDto() {};
 
-    public RequestWgl(Transaction transaction, List<Invite> invite) {
+    public RequestWglDto(Transaction transaction, List<Invite> invite) {
         this.transaction = transaction;
         this.invite = invite;
     }

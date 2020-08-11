@@ -1,7 +1,7 @@
 package com.sendgwgl.wgl.controller;
 
 import com.sendgwgl.wgl.model.Invite;
-import com.sendgwgl.wgl.model.RequestWgl;
+import com.sendgwgl.wgl.dto.RequestWglDto;
 import com.sendgwgl.wgl.model.Transaction;
 import com.sendgwgl.wgl.service.InviteService;
 import com.sendgwgl.wgl.service.TransactionService;
@@ -24,14 +24,14 @@ public class RequestWglController {
     private InviteService inviteService;
 
     @PostMapping("/wglrequest")
-    public void nested(@RequestBody RequestWgl json) {
+    public void nested(@RequestBody RequestWglDto json) {
 
-        Transaction jsonTransaction = json.getTransaction();
-        List<Invite> jsonInvite = json.getInvite();
+        Transaction transaction = json.getTransaction();
+        List<Invite> inviteList = json.getInvite();
 
-        transactionService.saveTransaction(jsonTransaction);
-        for (Invite invite : jsonInvite) {
-            invite.setTransaction(jsonTransaction);
+        transactionService.saveTransaction(transaction);
+        for (Invite invite : inviteList) {
+            invite.setTransaction(transaction);
             inviteService.saveInvite(invite);
         }
     }

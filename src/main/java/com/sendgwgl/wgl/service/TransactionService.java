@@ -16,16 +16,18 @@ public class TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
 
-    public Collection<TransactionProjection> getByCreatorId(Long accountId){
+    public Collection<TransactionProjection> getByCreatorId(Long accountId) {
         return transactionRepository.findByAccountId(accountId);
-    }
-
-    public TransactionProjection getOneById(Long id) {
-//        return transactionRepository.findById(id).orElse(new Transaction(0L));
-        return transactionRepository.getById(id);
     }
 
     public void saveTransaction(Transaction transaction) {
         transactionRepository.save(transaction);
     }
 }
+
+/*
+    public TransactionProjection getOneById(Long id) {
+//        return transactionRepository.findById(id).orElse(new Transaction(0L));
+        return transactionRepository.getById(id);
+    }
+ */

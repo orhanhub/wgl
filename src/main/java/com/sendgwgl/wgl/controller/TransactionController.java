@@ -6,9 +6,7 @@ import com.sendgwgl.wgl.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
-import java.util.List;
 
 
 //FIXME: for react axios get
@@ -26,6 +24,9 @@ public class TransactionController {
         return transactionService.getByCreatorId(creatorId);
     }
 
+}
+
+/*
     @GetMapping("/transaction/{id}")
     public TransactionProjection getOneTransaction(@PathVariable Long id, HttpServletResponse response) {
         return transactionService.getOneById(id);
@@ -36,4 +37,4 @@ public class TransactionController {
         transactionService.saveTransaction(transaction);
     }
 
-}
+ */
