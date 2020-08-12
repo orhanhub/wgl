@@ -1,6 +1,7 @@
 package com.sendgwgl.wgl.model.projections;
 
-import com.sendgwgl.wgl.model.Company;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -8,6 +9,7 @@ import java.util.Date;
 public interface TransactionProjection {
     String getCodename();
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     Date getCreatedat();
 
     String getId();
@@ -17,6 +19,7 @@ public interface TransactionProjection {
     Account getAccount();
 
     interface Account {
+        String getId();
         String getFirstname();
         String getLastname();
         Company getCompanyid();
